@@ -1,4 +1,11 @@
 <script setup>
+import { ref } from 'vue'
+
+const nombre = ref('Max')
+
+const leerNombre = e => {
+    nombre.value = e.target.value
+}
 
 </script>
 
@@ -15,7 +22,7 @@
         <form
         class="bg-white shadow-md rounded-lg py-10 px-5 my-10"
         >
-
+            {{ nombre }}
             <div class="mb-5 ">
                 <label 
                     for="mascota"
@@ -28,6 +35,8 @@
                     type="text"
                     placeholder="Nombre de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
+                    v-on:input="leerNombre"
+                    :value="nombre"
                 >
             </div>
 
