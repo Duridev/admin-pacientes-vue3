@@ -1,5 +1,11 @@
 <script setup>
 import { reactive } from 'vue'
+import Alerta from './Alerta.vue'
+
+const alerta = reactive({
+    tipo: '',
+    mensaje: ''
+})
 
 const paciente = reactive({
     nombre: '',
@@ -9,6 +15,13 @@ const paciente = reactive({
     sintomas: ''
 })
 
+const validar = () => {
+    if(Object.values(paciente).includes('')){
+        alerta.mensaje = 'Debe completar todos los campos'
+        alerta.tipo = 'error'
+        return
+    }
+}
 
 </script>
 
@@ -24,9 +37,9 @@ const paciente = reactive({
 
         <form
         class="bg-white shadow-md rounded-lg py-10 px-5 my-10"
+        @submit.prevent="validar"
         >
-            {{ paciente.nombre }}
-            {{ paciente.propietario }}
+
             <div class="mb-5 ">
                 <label 
                     for="mascota"
@@ -40,6 +53,7 @@ const paciente = reactive({
                     placeholder="Nombre de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
                     v-model="paciente.nombre"
+                    >
             </div>
 
             <div class="mb-5 ">
