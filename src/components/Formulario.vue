@@ -7,12 +7,11 @@ const alerta = reactive({
     mensaje: ''
 })
 
-const paciente = reactive({
-    nombre: '',
-    propietario: '',
-    email: '',
-    alta: '',
-    sintomas: ''
+const props = defineProps({
+    nombre: {
+        type: String,
+        required: true
+    }
 })
 
 const validar = () => {
@@ -22,6 +21,8 @@ const validar = () => {
         return
     }
 }
+
+defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nombre', 'update:nombre', ])
 
 </script>
 
@@ -39,7 +40,7 @@ const validar = () => {
             v-if="alerta.mensaje"
             :alerta="alerta"
         />
-
+        
         <form
         class="bg-white shadow-md rounded-lg py-10 px-5 my-10"
         @submit.prevent="validar"
@@ -57,7 +58,7 @@ const validar = () => {
                     type="text"
                     placeholder="Nombre de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
-                    v-model="paciente.nombre"
+                    @input="$emit('update:nombre', $event.target.value)"
                     >
             </div>
 
@@ -73,7 +74,6 @@ const validar = () => {
                     type="text"
                     placeholder="Dueño de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
-                    v-model="paciente.propietario"
                 >
             </div>
 
@@ -89,7 +89,6 @@ const validar = () => {
                     type="text"
                     placeholder="Email del dueño"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
-                    v-model="paciente.email"
                 >
             </div>
 
@@ -104,7 +103,6 @@ const validar = () => {
                     id="alta"
                     type="date"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
-                    v-model="paciente.alta"
                 >
             </div>
 
@@ -120,7 +118,6 @@ const validar = () => {
                     type="text"
                     placeholder="Describe los síntomas"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200 h-40"
-                    v-model="paciente.sintomas"
                 />
             </div>
             
