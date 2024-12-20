@@ -37,10 +37,10 @@ const validar = () => {
         return
     }
 
-    emit('guardaPaciente')
+    emit('guardarPaciente')
 }
 
-const emit = defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas', 'guardaPaciente'])
+const emit = defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas', 'guardarPaciente'])
 
 </script>
 

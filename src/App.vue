@@ -16,7 +16,15 @@
 
 const guardarPaciente = () => {
   console.log('guardando paciente....');
-  paciente.value.push(pacientes)
+  pacientes.value.push({...paciente})
+
+  Object.assign(paciente, {
+    nombre: '',
+    propietario: '',
+    email: '',
+    alta: '',
+    sintomas: ''
+  })
 }
 
 </script>
