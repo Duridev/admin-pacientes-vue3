@@ -2,6 +2,7 @@
   import { ref, reactive } from 'vue'
   import Header from './components/Header.vue'
   import Formulario from './components/Formulario.vue'
+  import Paciente from './components/Paciente.vue'
 
   const pacientes = ref([])
 
@@ -13,8 +14,9 @@
     sintomas: ''
 })
 
-const duardarPaciente = () => {
-
+const guardarPaciente = () => {
+  console.log('guardando paciente....');
+  paciente.value.push(pacientes)
 }
 
 </script>
@@ -31,14 +33,21 @@ const duardarPaciente = () => {
         v-model:email="paciente.email"
         v-model:alta="paciente.alta"
         v-model:sintomas="paciente.sintomas"
-        @guardat-paciente="guardarPaciente"
+        @guardar-paciente="guardarPaciente"
       />
 
       <div class="md:w-1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">Administra tus Pacientes</h3>
 
         <div v-if="pacientes.length > 0">
-        
+          <p class="text-lg mt-5 text-center scroll-mb-8">
+            Información de  
+            <span class="text-indigo-600 font-bold">Pacientes</span>
+          </p>
+          <Paciente 
+            v-for="paciente in pacientes"
+            :paciente="paciente"
+          />
         </div>
 
         <p v-else class="mt-20 text-2xl text-center">No Hay Pacientes</p>
