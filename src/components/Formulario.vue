@@ -11,18 +11,36 @@ const props = defineProps({
     nombre: {
         type: String,
         required: true
+    },
+    propietario: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    alta: {
+        type: String,
+        required: true
+    },
+    sintomas: {
+        type: String,
+        required: true
     }
 })
 
 const validar = () => {
-    if(Object.values(paciente).includes('')){
+    if(Object.values(props).includes('')){
         alerta.mensaje = 'Debe completar todos los campos'
         alerta.tipo = 'error'
         return
     }
+
+    emit('guardaPaciente')
 }
 
-defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nombre', 'update:nombre', ])
+const emit = defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas', 'guardaPaciente'])
 
 </script>
 
@@ -40,7 +58,7 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
             v-if="alerta.mensaje"
             :alerta="alerta"
         />
-        
+
         <form
         class="bg-white shadow-md rounded-lg py-10 px-5 my-10"
         @submit.prevent="validar"
@@ -58,6 +76,7 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
                     type="text"
                     placeholder="Nombre de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
+                    :value="nombre"
                     @input="$emit('update:nombre', $event.target.value)"
                     >
             </div>
@@ -74,6 +93,8 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
                     type="text"
                     placeholder="Dueño de la mascota"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
+                    :value="propietario"
+                    @input="$emit('update:propietario', $event.target.value)"
                 >
             </div>
 
@@ -89,6 +110,8 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
                     type="text"
                     placeholder="Email del dueño"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
+                    :value="email"
+                    @input="$emit('update:email', $event.target.value)"
                 >
             </div>
 
@@ -103,6 +126,8 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
                     id="alta"
                     type="date"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200"
+                    :value="alta"
+                    @input="$emit('update:alta', $event.target.value)"
                 >
             </div>
 
@@ -118,6 +143,8 @@ defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:nomb
                     type="text"
                     placeholder="Describe los síntomas"
                     class="w-full px-3 py-2 mt-1 text-gray-700 bg-gray-50 rounded-md focus:outline-none focus:shadow-outline focus:border-gray-400 border-2 border-gray-200 h-40"
+                    :value="sintomas"
+                    @input="$emit('update:sintomas', $event.target.value)"
                 />
             </div>
             
