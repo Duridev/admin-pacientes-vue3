@@ -28,6 +28,10 @@ const guardarPaciente = () => {
   })
 }
 
+const actualizarPaciente = (id) => {
+  console.log('Actualizando...', id);
+}
+
 </script>
 
 
@@ -56,6 +60,7 @@ const guardarPaciente = () => {
           <Paciente 
             v-for="paciente in pacientes"
             :paciente="paciente"
+            @actualizar-paciente="actualizarPaciente"
           />
         </div>
 
