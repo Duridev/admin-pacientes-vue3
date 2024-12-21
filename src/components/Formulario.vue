@@ -36,8 +36,15 @@ const validar = () => {
         alerta.tipo = 'error'
         return
     }
-
-    emit('guardarPaciente')
+    emit('guardar-paciente')
+    alerta.mensaje = 'Pacinete almacenado Correctamente'
+    alerta.tipo = 'exito'
+    setTimeout(() => {
+        Object.assign(alerta, {
+            tipo: '',
+            mensaje: ''
+        })
+    }, 3000);
 }
 
 const emit = defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas', 'guardarPaciente'])
